@@ -17,11 +17,17 @@ class Rover {
     for (let command of message.commands) {
       let result = { completed: false };
 
-      if (command.commandType === "MOVE") {
-        if (this.mode === "NORMAL") {
-          this.position = command.value;
-          result.completed = true;
+      // "responds with a false completed value when attempting to move in LOW_POWER mode"
+
+      if (command.commandType === "MOVE"){
+        if (this.mode === "NORMAL" ){        
+        this.position = command.value;
+        result.completed = true;
+
+        }else {
+          result.completed = false
         }
+
       } else if (command.commandType === "STATUS_CHECK") {
         result.completed = true;
         result.roverStatus = {
@@ -34,19 +40,11 @@ class Rover {
         result.completed = true;
       }
 
-      response.results.push(result); 
-      
+      response.results.push(result);
     }
-    
-    return response; 
+
+    return response;
   }
 }
 
-
-
-
-
-
 module.exports = Rover;
-
-
