@@ -21,7 +21,7 @@ describe("Message class", function () {
   // TEST 6
 
   it("contains a commansssds array passed into the constructor as the 2nd argument", function(){
-    const message = new Message("testing message", ["command"])
+    const message = new Message("testing message", ["command"]);
     expect(message.commands).toEqual(["command"]);
 
 
